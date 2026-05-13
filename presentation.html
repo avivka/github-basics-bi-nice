@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GitHub & SDLC for Power BI Teams</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css">
 <style>
@@ -14,7 +17,7 @@
   }
   .reveal { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
   .reveal h1, .reveal h2, .reveal h3 { font-weight: 600; }
-  .reveal h1 { font-size: 2.2em; }
+  .reveal h1 { font-size: 2.2em; font-family: 'Poppins', sans-serif; font-weight: 700; }
   .reveal h2 { font-size: 1.6em; color: #58a6ff; }
   .reveal h3 { font-size: 1.2em; color: #79c0ff; }
   .reveal li { margin-bottom: 0.5em; font-size: 0.85em; }
@@ -166,7 +169,7 @@
 <!-- ============ SLIDE 2: AGENDA ============ -->
 <section>
   <h2>What We'll Cover</h2>
-  <div style="text-align: left; max-width: 600px; margin: 1em auto;">
+  <div style="text-align: left; max-width: 700px; margin: 1em auto;">
     <div class="workflow-step">
       <div class="step-num">1</div>
       <div>The problem we're solving</div>
@@ -197,11 +200,13 @@
 <!-- ============ SLIDE 3: THE PROBLEM ============ -->
 <section>
   <h2>Sound Familiar?</h2>
-  <div class="pain-card"><span class="emoji">📁</span> Sales_Report_v1.pbix</div>
-  <div class="pain-card"><span class="emoji">📁</span> Sales_Report_v2_FINAL.pbix</div>
-  <div class="pain-card"><span class="emoji">📁</span> Sales_Report_v2_FINAL_reviewed.pbix</div>
-  <div class="pain-card"><span class="emoji">📁</span> Sales_Report_v2_FINAL_reviewed_ACTUAL.pbix</div>
-  <div class="pain-card"><span class="emoji">📁</span> Sales_Report_USE_THIS_ONE.pbix</div>
+  <div style="max-width: 700px; margin: 0 auto;">
+    <div class="pain-card" style="padding: 0.6em 1.2em; margin: 0.35em 0; font-size: 0.75em;"><span class="emoji">📁</span> Sales_Report_v1.pbix</div>
+    <div class="pain-card" style="padding: 0.6em 1.2em; margin: 0.35em 0; font-size: 0.75em;"><span class="emoji">📁</span> Sales_Report_v2_FINAL.pbix</div>
+    <div class="pain-card" style="padding: 0.6em 1.2em; margin: 0.35em 0; font-size: 0.75em;"><span class="emoji">📁</span> Sales_Report_v2_FINAL_reviewed.pbix</div>
+    <div class="pain-card" style="padding: 0.6em 1.2em; margin: 0.35em 0; font-size: 0.75em;"><span class="emoji">📁</span> Sales_Report_v2_FINAL_reviewed_ACTUAL.pbix</div>
+    <div class="pain-card" style="padding: 0.6em 1.2em; margin: 0.35em 0; font-size: 0.75em;"><span class="emoji">📁</span> Sales_Report_USE_THIS_ONE.pbix</div>
+  </div>
 </section>
 
 <!-- ============ SLIDE 4: PAIN POINTS ============ -->
@@ -217,7 +222,7 @@
       <p>People overwrite each other's work</p>
     </div>
     <div class="concept-card">
-      <h4>No Review Process</h4>
+      <h4>No Organized Review Process</h4>
       <p>Changes go live without anyone checking</p>
     </div>
     <div class="concept-card">
@@ -231,67 +236,75 @@
 <section>
   <h2>What is SDLC?</h2>
   <p style="font-size: 0.85em;"><span class="blue">Software Development Life Cycle</span></p>
-  <p style="font-size: 0.8em; color: #8b949e;">Sounds intimidating. It's just a process.</p>
   <div style="margin-top: 1em;">
-    <span class="flow-box">Plan</span>
+    <span class="flow-box">Requirements</span>
     <span class="flow-arrow">→</span>
-    <span class="flow-box">Develop</span>
+    <span class="flow-box">Design</span>
     <span class="flow-arrow">→</span>
-    <span class="flow-box">Review</span>
+    <span class="flow-box">Development</span>
     <span class="flow-arrow">→</span>
-    <span class="flow-box">Test</span>
+    <span class="flow-box">Testing</span>
     <span class="flow-arrow">→</span>
-    <span class="flow-box">Deploy</span>
+    <span class="flow-box">Deployment</span>
     <span class="flow-arrow">→</span>
-    <span class="flow-box">Monitor</span>
+    <span class="flow-box">Maintenance</span>
+  </div>
+  <br>
+  <p style="font-size: 0.75em; color: #8b949e;">CI/CD automates the inner loop:</p>
+  <div style="margin-top: 0.5em;">
+    <span class="flow-box" style="border-color: #3fb950;">Code</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-box" style="border-color: #3fb950;">Build</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-box" style="border-color: #3fb950;">Test</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-box" style="border-color: #3fb950;">Release</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-box" style="border-color: #3fb950;">Deploy</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-box" style="border-color: #3fb950;">Monitor</span>
   </div>
 </section>
 
 <!-- ============ SLIDE 6: SDLC FOR DATA ============ -->
 <section>
-  <h2>SDLC for Data Teams</h2>
-  <div style="text-align: left; max-width: 700px; margin: 0.5em auto;">
-    <div class="workflow-step">
-      <div class="step-num" style="background: #58a6ff;">P</div>
-      <div><strong>Plan</strong> — "We need a new KPI for customer acquisition"</div>
+  <h2>SDLC + CI/CD for Data Teams</h2>
+  <div style="text-align: left; max-width: 750px; margin: 0.3em auto;">
+    <p class="small" style="margin-bottom: 0.3em;"><span class="blue">SDLC</span></p>
+    <div class="workflow-step" style="padding: 0.35em 1em; margin: 0.25em 0; font-size: 0.65em;">
+      <div class="step-num" style="background: #58a6ff;">R</div>
+      <div><strong>Requirements</strong> - "We need a new KPI for customer acquisition"</div>
     </div>
-    <div class="workflow-step">
+    <div class="workflow-step" style="padding: 0.35em 1em; margin: 0.25em 0; font-size: 0.65em;">
+      <div class="step-num" style="background: #bc8cff;">D</div>
+      <div><strong>Design</strong> - Define the measure logic, data sources, visuals</div>
+    </div>
+    <div class="workflow-step" style="padding: 0.35em 1em; margin: 0.25em 0; font-size: 0.65em;">
       <div class="step-num" style="background: #f0883e;">D</div>
-      <div><strong>Develop</strong> — Create the measure in your own safe copy</div>
+      <div><strong>Development</strong> - Build the measure on a feature branch</div>
     </div>
-    <div class="workflow-step">
-      <div class="step-num" style="background: #bc8cff;">R</div>
-      <div><strong>Review</strong> — Team lead checks the DAX formula</div>
-    </div>
-    <div class="workflow-step">
+    <p class="small" style="margin: 0.3em 0;"><span class="green">CI/CD (automated by GitHub Actions)</span></p>
+    <div class="workflow-step" style="border-left-color: #3fb950; padding: 0.35em 1em; margin: 0.25em 0; font-size: 0.65em;">
       <div class="step-num" style="background: #f85149;">T</div>
-      <div><strong>Test</strong> — Automated checks: does the data look right?</div>
+      <div><strong>Test</strong> - Automated validation on every Pull Request</div>
     </div>
-    <div class="workflow-step">
+    <div class="workflow-step" style="border-left-color: #3fb950; padding: 0.35em 1em; margin: 0.25em 0; font-size: 0.65em;">
       <div class="step-num" style="background: #3fb950;">D</div>
-      <div><strong>Deploy</strong> — Publish to production workspace automatically</div>
+      <div><strong>Deploy</strong> - Auto-publish to workspace on merge to main</div>
     </div>
-    <div class="workflow-step">
+    <div class="workflow-step" style="border-left-color: #3fb950; padding: 0.35em 1em; margin: 0.25em 0; font-size: 0.65em;">
       <div class="step-num" style="background: #8b949e;">M</div>
-      <div><strong>Monitor</strong> — Alert if dataset refresh fails overnight</div>
+      <div><strong>Monitor</strong> - Scheduled checks, alerts on refresh failures</div>
     </div>
   </div>
 </section>
 
-<!-- ============ SLIDE 7: KEY MESSAGE ============ -->
-<section>
-  <div class="big-quote">
-    SDLC is not about slowing you down.<br><br>
-    It's about <span class="green">sleeping well at night</span>.
-  </div>
-</section>
-
-<!-- ============ SLIDE 8: WHAT IS GIT ============ -->
+<!-- ============ SLIDE 7: WHAT IS GIT ============ -->
 <section>
   <h2>What is Git?</h2>
   <br>
   <p style="font-size: 1.1em;">
-    <span class="blue">Track Changes</span> on steroids
+    A <span class="blue">version control</span> system for any type of file
   </p>
   <br>
   <div style="font-size: 0.8em; color: #8b949e;">
@@ -327,20 +340,41 @@
 <!-- ============ SLIDE 10: THE GIT FLOW ============ -->
 <section>
   <h2>The Git Flow</h2>
-  <div class="yaml-block" style="font-size: 0.75em; text-align: center; font-family: 'Cascadia Code', monospace;">
-    <span class="blue">main</span>: ────●────────────────●────────●──────▸<br>
-    <span style="color: #8b949e;">                 ╲              ╱</span><br>
-    <span class="green">feature</span>: <span style="color: #8b949e;">         </span>●─────●─────●<br>
-    <span style="color: #8b949e;">              create  commit  merge</span>
+  <div style="margin: 0.5em auto; max-width: 650px;">
+    <svg viewBox="0 0 650 140" xmlns="http://www.w3.org/2000/svg" style="width: 100%;">
+      <!-- Main branch line -->
+      <line x1="50" y1="35" x2="610" y2="35" stroke="#58a6ff" stroke-width="3"/>
+      <!-- Feature branch lines -->
+      <line x1="170" y1="35" x2="230" y2="105" stroke="#3fb950" stroke-width="3"/>
+      <line x1="230" y1="105" x2="410" y2="105" stroke="#3fb950" stroke-width="3"/>
+      <line x1="410" y1="105" x2="470" y2="35" stroke="#3fb950" stroke-width="3"/>
+      <!-- Main branch dots -->
+      <circle cx="80" cy="35" r="7" fill="#58a6ff"/>
+      <circle cx="170" cy="35" r="7" fill="#58a6ff"/>
+      <circle cx="470" cy="35" r="7" fill="#58a6ff"/>
+      <circle cx="570" cy="35" r="7" fill="#58a6ff"/>
+      <!-- Feature branch dots -->
+      <circle cx="280" cy="105" r="7" fill="#3fb950"/>
+      <circle cx="370" cy="105" r="7" fill="#3fb950"/>
+      <!-- Labels -->
+      <text x="50" y="18" fill="#58a6ff" font-family="Segoe UI, sans-serif" font-size="13" font-weight="bold">main</text>
+      <text x="220" y="133" fill="#3fb950" font-family="Segoe UI, sans-serif" font-size="13" font-weight="bold">feature/add-kpi</text>
+      <!-- Annotations -->
+      <text x="150" y="68" fill="#8b949e" font-family="Segoe UI, sans-serif" font-size="11">branch</text>
+      <text x="270" y="92" fill="#8b949e" font-family="Segoe UI, sans-serif" font-size="11">commit</text>
+      <text x="355" y="92" fill="#8b949e" font-family="Segoe UI, sans-serif" font-size="11">commit</text>
+      <text x="445" y="68" fill="#8b949e" font-family="Segoe UI, sans-serif" font-size="11">merge</text>
+      <!-- Arrow tip -->
+      <polygon points="610,35 600,29 600,41" fill="#58a6ff"/>
+    </svg>
   </div>
-  <br>
-  <div style="font-size: 0.75em;">
+  <div style="font-size: 0.7em;">
     <span class="tag">1. Branch off</span>
     <span class="tag">2. Make changes</span>
     <span class="tag">3. Get reviewed</span>
     <span class="tag green-tag">4. Merge back</span>
   </div>
-  <p class="small" style="margin-top: 1em;"><span class="blue">main</span> is always the source of truth — what's in production</p>
+  <p class="small"><span class="blue">main</span> is always the source of truth - what's in production</p>
 </section>
 
 <!-- ============ SLIDE 11: WHAT ARE GITHUB ACTIONS ============ -->
@@ -348,20 +382,22 @@
   <h2>GitHub Actions</h2>
   <p style="font-size: 0.9em;">Automation that runs <span class="blue">when things happen</span> in your repo</p>
   <br>
-  <div class="pain-card" style="text-align: center; font-size: 0.9em;">
-    <strong>IF</strong> <span class="blue">someone opens a PR</span>
-    <span class="flow-arrow">→</span>
-    <strong>THEN</strong> <span class="green">validate the changes</span>
-  </div>
-  <div class="pain-card" style="text-align: center; font-size: 0.9em;">
-    <strong>IF</strong> <span class="blue">code merges to main</span>
-    <span class="flow-arrow">→</span>
-    <strong>THEN</strong> <span class="green">deploy to Power BI</span>
-  </div>
-  <div class="pain-card" style="text-align: center; font-size: 0.9em;">
-    <strong>IF</strong> <span class="blue">it's 7:00 AM</span>
-    <span class="flow-arrow">→</span>
-    <strong>THEN</strong> <span class="green">check refresh status</span>
+  <div style="max-width: 650px; margin: 0 auto;">
+    <div class="pain-card" style="text-align: center; font-size: 0.85em;">
+      <strong>IF</strong> <span class="blue">someone opens a PR</span>
+      <span class="flow-arrow">→</span>
+      <strong>THEN</strong> <span class="green">validate the changes</span>
+    </div>
+    <div class="pain-card" style="text-align: center; font-size: 0.85em;">
+      <strong>IF</strong> <span class="blue">code merges to main</span>
+      <span class="flow-arrow">→</span>
+      <strong>THEN</strong> <span class="green">deploy to Power BI</span>
+    </div>
+    <div class="pain-card" style="text-align: center; font-size: 0.85em;">
+      <strong>IF</strong> <span class="blue">it's 7:00 AM</span>
+      <span class="flow-arrow">→</span>
+      <strong>THEN</strong> <span class="green">check refresh status</span>
+    </div>
   </div>
 </section>
 
@@ -432,7 +468,7 @@
     </div>
     <div class="workflow-step" style="border-left-color: #3fb950;">
       <div class="step-num" style="background: #3fb950;">✓</div>
-      <div><span class="green">Automated checks pass</span> — JSON valid, no binaries</div>
+      <div><span class="green">Automated checks pass</span> - JSON valid, no binaries</div>
     </div>
     <div class="workflow-step">
       <div class="step-num">5</div>
@@ -445,29 +481,42 @@
   </div>
 </section>
 
+<!-- ============ DEMO TIME ============ -->
+<section>
+  <h1>Demo Time</h1>
+  <p style="font-size: 0.9em; color: #8b949e;">Let's see it all in action</p>
+  <br>
+  <div style="font-size: 0.8em;">
+    <span class="tag green-tag">Live repo</span>
+    <span class="tag">Workflows</span>
+    <span class="tag">Pull Request</span>
+    <span class="tag green-tag">Actions running</span>
+  </div>
+</section>
+
 <!-- ============ SLIDE 15: GITHUB COPILOT ============ -->
 <section>
   <h2>GitHub Copilot</h2>
-  <p style="font-size: 0.85em;">AI that helps even <span class="highlight">non-developers</span></p>
+  <p style="font-size: 0.85em;"><span class="highlight">AI code assistant</span></p>
   <div class="concept-grid" style="margin-top: 1em;">
     <div class="concept-card">
       <h4>Write Workflows</h4>
-      <p>Describe what you want in English → get YAML</p>
+      <p>Describe what you want in English - get YAML</p>
     </div>
     <div class="concept-card">
-      <h4>Generate DAX</h4>
-      <p>"Calculate year-over-year growth" → DAX formula</p>
+      <h4>Generate Code</h4>
+      <p>Describe the logic you need - get working code</p>
     </div>
     <div class="concept-card">
       <h4>Explain Code</h4>
-      <p>Paste any config → get a plain English explanation</p>
+      <p>Paste any config - get a plain English explanation</p>
     </div>
     <div class="concept-card">
       <h4>Fix Errors</h4>
-      <p>Paste the error message → get the fix</p>
+      <p>Paste the error message - get the fix</p>
     </div>
   </div>
-  <p class="small" style="margin-top: 1em;">You don't need to memorize YAML syntax — Copilot writes it for you</p>
+  <p class="small" style="margin-top: 1em;">You don't need to memorize YAML syntax - Copilot writes it for you</p>
 </section>
 
 <!-- ============ SLIDE 16: THE MISSING PIECE ============ -->
@@ -532,19 +581,6 @@
       <span class="small">Version control, review,</span><br>
       <span class="small">automation — the full loop</span>
     </span>
-  </div>
-</section>
-
-<!-- ============ SLIDE 19: DEMO TIME ============ -->
-<section>
-  <h1>Demo Time</h1>
-  <p style="font-size: 0.9em; color: #8b949e;">Let's see it all in action</p>
-  <br>
-  <div style="font-size: 0.8em;">
-    <span class="tag green-tag">Live repo</span>
-    <span class="tag">Workflows</span>
-    <span class="tag">Pull Request</span>
-    <span class="tag green-tag">Actions running</span>
   </div>
 </section>
 
