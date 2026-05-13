@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GitHub & SDLC for Power BI Teams</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css">
+<style>
+  :root {
+    --r-background-color: #0d1117;
+    --r-main-color: #e6edf3;
+    --r-heading-color: #ffffff;
+  }
+  .reveal { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+  .reveal h1, .reveal h2, .reveal h3 { font-weight: 600; }
+  .reveal h1 { font-size: 2.2em; }
+  .reveal h2 { font-size: 1.6em; color: #58a6ff; }
+  .reveal h3 { font-size: 1.2em; color: #79c0ff; }
+  .reveal li { margin-bottom: 0.5em; font-size: 0.85em; }
+  .reveal .small { font-size: 0.7em; color: #8b949e; }
+  .reveal .highlight { color: #f0883e; font-weight: bold; }
+  .reveal .green { color: #3fb950; }
+  .reveal .red { color: #f85149; }
+  .reveal .blue { color: #58a6ff; }
+  .reveal .purple { color: #bc8cff; }
+  .reveal .emoji { font-size: 1.4em; }
+  .reveal .two-col { display: flex; gap: 2em; text-align: left; }
+  .reveal .two-col > div { flex: 1; }
+  .reveal .pain-card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    padding: 1em 1.2em;
+    margin: 0.5em 0;
+    text-align: left;
+    font-size: 0.8em;
+  }
+  .reveal .pain-card .emoji { font-size: 1.2em; margin-right: 0.3em; }
+  .reveal .flow-box {
+    display: inline-block;
+    background: #161b22;
+    border: 2px solid #58a6ff;
+    border-radius: 10px;
+    padding: 0.5em 1em;
+    margin: 0.3em;
+    font-size: 0.75em;
+  }
+  .reveal .flow-arrow { color: #58a6ff; font-size: 1.5em; margin: 0 0.2em; }
+  .reveal .yaml-block {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 10px;
+    padding: 1em 1.5em;
+    text-align: left;
+    font-family: 'Cascadia Code', 'Fira Code', monospace;
+    font-size: 0.65em;
+    line-height: 1.6;
+  }
+  .reveal .yaml-key { color: #ff7b72; }
+  .reveal .yaml-value { color: #a5d6ff; }
+  .reveal .yaml-comment { color: #8b949e; }
+  .reveal .concept-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8em;
+    margin-top: 0.5em;
+  }
+  .reveal .concept-card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 10px;
+    padding: 0.8em 1em;
+    text-align: left;
+    font-size: 0.7em;
+  }
+  .reveal .concept-card h4 {
+    margin: 0 0 0.3em 0;
+    color: #58a6ff;
+    font-size: 1.1em;
+  }
+  .reveal .concept-card p { margin: 0; color: #8b949e; }
+  .reveal .workflow-step {
+    display: flex;
+    align-items: center;
+    gap: 0.8em;
+    background: #161b22;
+    border-left: 3px solid #58a6ff;
+    border-radius: 0 8px 8px 0;
+    padding: 0.5em 1em;
+    margin: 0.4em 0;
+    text-align: left;
+    font-size: 0.7em;
+  }
+  .reveal .workflow-step .step-num {
+    background: #58a6ff;
+    color: #0d1117;
+    border-radius: 50%;
+    width: 1.8em;
+    height: 1.8em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+  .reveal .tag {
+    display: inline-block;
+    background: #1f6feb33;
+    border: 1px solid #58a6ff;
+    border-radius: 20px;
+    padding: 0.2em 0.8em;
+    font-size: 0.7em;
+    margin: 0.2em;
+  }
+  .reveal .tag.green-tag {
+    background: #23863533;
+    border-color: #3fb950;
+  }
+  .reveal .tag.orange-tag {
+    background: #f0883e33;
+    border-color: #f0883e;
+  }
+  .reveal .big-quote {
+    font-size: 1.3em;
+    font-style: italic;
+    color: #8b949e;
+    border-left: 4px solid #58a6ff;
+    padding-left: 0.8em;
+    margin: 1em auto;
+    max-width: 80%;
+    text-align: left;
+  }
+  .reveal .tmdl-preview {
+    display: flex;
+    gap: 1em;
+    margin-top: 0.5em;
+  }
+  .reveal .tmdl-box {
+    flex: 1;
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 10px;
+    padding: 0.8em;
+    text-align: left;
+    font-size: 0.65em;
+  }
+  .reveal .tmdl-box h4 {
+    margin: 0 0 0.5em 0;
+    font-size: 1em;
+  }
+  .slide-number { display: none !important; }
+  .reveal .progress { height: 4px !important; color: #58a6ff; }
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- ============ SLIDE 1: TITLE ============ -->
+<section>
+  <h1>Git & SDLC<br>for Power BI Teams</h1>
+  <p class="small" style="margin-top: 1.5em;">From "Report_FINAL_FINAL_v3" to GitOps</p>
+</section>
+
+<!-- ============ SLIDE 2: AGENDA ============ -->
+<section>
+  <h2>What We'll Cover</h2>
+  <div style="text-align: left; max-width: 600px; margin: 1em auto;">
+    <div class="workflow-step">
+      <div class="step-num">1</div>
+      <div>The problem we're solving</div>
+    </div>
+    <div class="workflow-step">
+      <div class="step-num">2</div>
+      <div>SDLC - the process behind great software</div>
+    </div>
+    <div class="workflow-step">
+      <div class="step-num">3</div>
+      <div>Git basics - version control for everyone</div>
+    </div>
+    <div class="workflow-step">
+      <div class="step-num">4</div>
+      <div>GitHub Actions - automate everything</div>
+    </div>
+    <div class="workflow-step">
+      <div class="step-num">5</div>
+      <div>GitHub Copilot - your AI assistant</div>
+    </div>
+    <div class="workflow-step">
+      <div class="step-num">6</div>
+      <div>What's next - the TMDL bridge</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLIDE 3: THE PROBLEM ============ -->
+<section>
+  <h2>Sound Familiar?</h2>
+  <div class="pain-card"><span class="emoji">📁</span> Sales_Report_v1.pbix</div>
+  <div class="pain-card"><span class="emoji">📁</span> Sales_Report_v2_FINAL.pbix</div>
+  <div class="pain-card"><span class="emoji">📁</span> Sales_Report_v2_FINAL_reviewed.pbix</div>
+  <div class="pain-card"><span class="emoji">📁</span> Sales_Report_v2_FINAL_reviewed_ACTUAL.pbix</div>
+  <div class="pain-card"><span class="emoji">📁</span> Sales_Report_USE_THIS_ONE.pbix</div>
+</section>
+
+<!-- ============ SLIDE 4: PAIN POINTS ============ -->
+<section>
+  <h2>The Real Pain Points</h2>
+  <div class="concept-grid">
+    <div class="concept-card">
+      <h4>No Version History</h4>
+      <p>You can't go back to last week's working version</p>
+    </div>
+    <div class="concept-card">
+      <h4>No Collaboration Safety</h4>
+      <p>People overwrite each other's work</p>
+    </div>
+    <div class="concept-card">
+      <h4>No Review Process</h4>
+      <p>Changes go live without anyone checking</p>
+    </div>
+    <div class="concept-card">
+      <h4>No Audit Trail</h4>
+      <p>"Who changed this measure? When? Why?"</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLIDE 5: WHAT IS SDLC ============ -->
+<section>
+  <h2>What is SDLC?</h2>
+  <p style="font-size: 0.85em;"><span class="blue">Software Development Life Cycle</span></p>
+  <p style="font-size: 0.8em; color: #8b949e;">Sounds intimidating. It's just a process.</p>
+  <div style="margin-top: 1em;">
+    <span class="flow-box">Plan</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-box">Develop</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-box">Review</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-box">Test</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-box">Deploy</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-box">Monitor</span>
+  </div>
+</section>
+
+<!-- ============ SLIDE 6: SDLC FOR DATA ============ -->
+<section>
+  <h2>SDLC for Data Teams</h2>
+  <div style="text-align: left; max-width: 700px; margin: 0.5em auto;">
+    <div class="workflow-step">
+      <div class="step-num" style="background: #58a6ff;">P</div>
+      <div><strong>Plan</strong> — "We need a new KPI for customer acquisition"</div>
+    </div>
+    <div class="workflow-step">
+      <div class="step-num" style="background: #f0883e;">D</div>
+      <div><strong>Develop</strong> — Create the measure in your own safe copy</div>
+    </div>
+    <div class="workflow-step">
+      <div class="step-num" style="background: #bc8cff;">R</div>
+      <div><strong>Review</strong> — Team lead checks the DAX formula</div>
+    </div>
+    <div class="workflow-step">
+      <div class="step-num" style="background: #f85149;">T</div>
+      <div><strong>Test</strong> — Automated checks: does the data look right?</div>
+    </div>
+    <div class="workflow-step">
+      <div class="step-num" style="background: #3fb950;">D</div>
+      <div><strong>Deploy</strong> — Publish to production workspace automatically</div>
+    </div>
+    <div class="workflow-step">
+      <div class="step-num" style="background: #8b949e;">M</div>
+      <div><strong>Monitor</strong> — Alert if dataset refresh fails overnight</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLIDE 7: KEY MESSAGE ============ -->
+<section>
+  <div class="big-quote">
+    SDLC is not about slowing you down.<br><br>
+    It's about <span class="green">sleeping well at night</span>.
+  </div>
+</section>
+
+<!-- ============ SLIDE 8: WHAT IS GIT ============ -->
+<section>
+  <h2>What is Git?</h2>
+  <br>
+  <p style="font-size: 1.1em;">
+    <span class="blue">Track Changes</span> on steroids
+  </p>
+  <br>
+  <div style="font-size: 0.8em; color: #8b949e;">
+    <p>Every change is saved forever</p>
+    <p>You always know <span class="highlight">who</span> changed <span class="highlight">what</span> and <span class="highlight">why</span></p>
+    <p>You can always go back to any previous version</p>
+  </div>
+</section>
+
+<!-- ============ SLIDE 9: GIT CONCEPTS ============ -->
+<section>
+  <h2>Git in 4 Concepts</h2>
+  <div class="concept-grid">
+    <div class="concept-card">
+      <h4>Repository (Repo)</h4>
+      <p>Your project folder — with superpowers.<br>Contains all files + full history.</p>
+    </div>
+    <div class="concept-card">
+      <h4>Commit</h4>
+      <p>A saved snapshot with a message.<br><em>"Added gross margin KPI"</em></p>
+    </div>
+    <div class="concept-card">
+      <h4>Branch</h4>
+      <p>Your own safe copy to work on,<br>without affecting anyone else.</p>
+    </div>
+    <div class="concept-card">
+      <h4>Pull Request (PR)</h4>
+      <p>"I made changes — please review<br>before merging into production."</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLIDE 10: THE GIT FLOW ============ -->
+<section>
+  <h2>The Git Flow</h2>
+  <div class="yaml-block" style="font-size: 0.75em; text-align: center; font-family: 'Cascadia Code', monospace;">
+    <span class="blue">main</span>: ────●────────────────●────────●──────▸<br>
+    <span style="color: #8b949e;">                 ╲              ╱</span><br>
+    <span class="green">feature</span>: <span style="color: #8b949e;">         </span>●─────●─────●<br>
+    <span style="color: #8b949e;">              create  commit  merge</span>
+  </div>
+  <br>
+  <div style="font-size: 0.75em;">
+    <span class="tag">1. Branch off</span>
+    <span class="tag">2. Make changes</span>
+    <span class="tag">3. Get reviewed</span>
+    <span class="tag green-tag">4. Merge back</span>
+  </div>
+  <p class="small" style="margin-top: 1em;"><span class="blue">main</span> is always the source of truth — what's in production</p>
+</section>
+
+<!-- ============ SLIDE 11: WHAT ARE GITHUB ACTIONS ============ -->
+<section>
+  <h2>GitHub Actions</h2>
+  <p style="font-size: 0.9em;">Automation that runs <span class="blue">when things happen</span> in your repo</p>
+  <br>
+  <div class="pain-card" style="text-align: center; font-size: 0.9em;">
+    <strong>IF</strong> <span class="blue">someone opens a PR</span>
+    <span class="flow-arrow">→</span>
+    <strong>THEN</strong> <span class="green">validate the changes</span>
+  </div>
+  <div class="pain-card" style="text-align: center; font-size: 0.9em;">
+    <strong>IF</strong> <span class="blue">code merges to main</span>
+    <span class="flow-arrow">→</span>
+    <strong>THEN</strong> <span class="green">deploy to Power BI</span>
+  </div>
+  <div class="pain-card" style="text-align: center; font-size: 0.9em;">
+    <strong>IF</strong> <span class="blue">it's 7:00 AM</span>
+    <span class="flow-arrow">→</span>
+    <strong>THEN</strong> <span class="green">check refresh status</span>
+  </div>
+</section>
+
+<!-- ============ SLIDE 12: ANATOMY OF A WORKFLOW ============ -->
+<section>
+  <h2>Anatomy of a Workflow</h2>
+  <div class="yaml-block">
+    <span class="yaml-comment"># It's just a YAML file in your repo</span><br>
+    <br>
+    <span class="yaml-key">name:</span> <span class="yaml-value">Validate Power BI Changes</span> <span class="yaml-comment">&nbsp;&nbsp;# What is it called?</span><br>
+    <br>
+    <span class="yaml-key">on:</span> <span class="yaml-comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# WHEN does it run?</span><br>
+    &nbsp;&nbsp;<span class="yaml-key">pull_request:</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<span class="yaml-key">branches:</span> <span class="yaml-value">[main]</span><br>
+    <br>
+    <span class="yaml-key">jobs:</span> <span class="yaml-comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# WHAT does it do?</span><br>
+    &nbsp;&nbsp;<span class="yaml-key">validate:</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<span class="yaml-key">runs-on:</span> <span class="yaml-value">ubuntu-latest</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<span class="yaml-key">steps:</span> <span class="yaml-comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Steps, in order</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="yaml-key">name:</span> <span class="yaml-value">Check for .pbix files</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="yaml-key">name:</span> <span class="yaml-value">Validate JSON files</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="yaml-key">name:</span> <span class="yaml-value">Check documentation</span><br>
+  </div>
+  <p class="small" style="margin-top: 0.8em;">Lives in <span class="blue">.github/workflows/</span> — GitHub runs it automatically</p>
+</section>
+
+<!-- ============ SLIDE 13: THREE WORKFLOWS ============ -->
+<section>
+  <h2>Three Workflows for Power BI</h2>
+  <div style="text-align: left; max-width: 700px; margin: 0.5em auto;">
+    <div class="pain-card">
+      <strong class="blue">1. Validate Changes</strong>
+      <span class="tag">on: pull_request</span><br>
+      <span class="small">Block .pbix binaries &bull; Validate JSON &bull; Check documentation</span>
+    </div>
+    <div class="pain-card">
+      <strong class="green">2. Deploy to Workspace</strong>
+      <span class="tag green-tag">on: push to main</span><br>
+      <span class="small">Authenticate &bull; Publish via REST API &bull; Notify team on Teams</span>
+    </div>
+    <div class="pain-card">
+      <strong class="purple">3. Monitor Refreshes</strong>
+      <span class="tag orange-tag">on: schedule (daily)</span><br>
+      <span class="small">Check refresh status &bull; Alert on failures &bull; Health report</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLIDE 14: A DAY IN THE LIFE ============ -->
+<section>
+  <h2>A Day in the Life</h2>
+  <div style="text-align: left; max-width: 650px; margin: 0 auto; font-size: 0.7em;">
+    <div class="workflow-step">
+      <div class="step-num">1</div>
+      <div>Request comes in: <em>"Add acquisition cost KPI"</em></div>
+    </div>
+    <div class="workflow-step">
+      <div class="step-num">2</div>
+      <div>Create branch: <span class="blue">feature/add-acquisition-kpi</span></div>
+    </div>
+    <div class="workflow-step">
+      <div class="step-num">3</div>
+      <div>Make your changes, commit with a message</div>
+    </div>
+    <div class="workflow-step">
+      <div class="step-num">4</div>
+      <div>Open a Pull Request for review</div>
+    </div>
+    <div class="workflow-step" style="border-left-color: #3fb950;">
+      <div class="step-num" style="background: #3fb950;">✓</div>
+      <div><span class="green">Automated checks pass</span> — JSON valid, no binaries</div>
+    </div>
+    <div class="workflow-step">
+      <div class="step-num">5</div>
+      <div>Team lead reviews and approves</div>
+    </div>
+    <div class="workflow-step" style="border-left-color: #3fb950;">
+      <div class="step-num" style="background: #3fb950;">✓</div>
+      <div>Merge → <span class="green">auto-deploys to Power BI workspace</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLIDE 15: GITHUB COPILOT ============ -->
+<section>
+  <h2>GitHub Copilot</h2>
+  <p style="font-size: 0.85em;">AI that helps even <span class="highlight">non-developers</span></p>
+  <div class="concept-grid" style="margin-top: 1em;">
+    <div class="concept-card">
+      <h4>Write Workflows</h4>
+      <p>Describe what you want in English → get YAML</p>
+    </div>
+    <div class="concept-card">
+      <h4>Generate DAX</h4>
+      <p>"Calculate year-over-year growth" → DAX formula</p>
+    </div>
+    <div class="concept-card">
+      <h4>Explain Code</h4>
+      <p>Paste any config → get a plain English explanation</p>
+    </div>
+    <div class="concept-card">
+      <h4>Fix Errors</h4>
+      <p>Paste the error message → get the fix</p>
+    </div>
+  </div>
+  <p class="small" style="margin-top: 1em;">You don't need to memorize YAML syntax — Copilot writes it for you</p>
+</section>
+
+<!-- ============ SLIDE 16: THE MISSING PIECE ============ -->
+<section>
+  <h2>The Missing Piece</h2>
+  <br>
+  <p style="font-size: 0.9em;">Everything we showed works great, but...</p>
+  <br>
+  <div class="pain-card" style="text-align: center; font-size: 0.9em;">
+    <span class="red">.pbix files are <strong>binary</strong></span><br>
+    <span class="small">Git can't show you what changed inside</span><br>
+    <span class="small">It's like tracking changes on a ZIP file</span>
+  </div>
+  <br>
+  <p style="font-size: 0.9em;">We need Power BI content as <span class="green">readable text</span>...</p>
+</section>
+
+<!-- ============ SLIDE 17: TMDL BRIDGE ============ -->
+<section>
+  <h2>Enter: TMDL</h2>
+  <p style="font-size: 0.8em;"><span class="blue">Tabular Model Definition Language</span> <span class="tag orange-tag">Preview</span></p>
+  <div class="tmdl-preview">
+    <div class="tmdl-box">
+      <h4 class="red">Before</h4>
+      <span style="color: #8b949e;">Sales_Report.pbix</span><br>
+      <span style="color: #8b949e;">→ One big binary blob</span><br>
+      <span style="color: #8b949e;">→ Git sees: "file changed"</span><br>
+      <span style="color: #8b949e;">→ Can't review what changed</span>
+    </div>
+    <div class="tmdl-box">
+      <h4 class="green">After (TMDL)</h4>
+      <span style="color: #e6edf3;">measures/</span><br>
+      <span style="color: #e6edf3;">&nbsp;&nbsp;gross-margin.tmdl</span><br>
+      <span style="color: #e6edf3;">&nbsp;&nbsp;total-revenue.tmdl</span><br>
+      <span style="color: #e6edf3;">tables/</span><br>
+      <span style="color: #e6edf3;">&nbsp;&nbsp;FactSales.tmdl</span><br>
+      <span style="color: #3fb950;">→ Git shows exact changes!</span>
+    </div>
+  </div>
+  <p class="small" style="margin-top: 1em;">Next session: deep dive into TMDL</p>
+</section>
+
+<!-- ============ SLIDE 18: FULL PICTURE ============ -->
+<section>
+  <h2>The Full Picture</h2>
+  <br>
+  <div style="font-size: 0.85em;">
+    <span class="flow-box" style="border-color: #58a6ff;">
+      <span class="blue">Today's Session</span><br>
+      <span class="small">Git + SDLC + GitHub Actions</span><br>
+      <span class="small">The process & automation</span>
+    </span>
+    <span class="flow-arrow" style="font-size: 2em;">+</span>
+    <span class="flow-box" style="border-color: #bc8cff;">
+      <span class="purple">Next Session</span><br>
+      <span class="small">TMDL</span><br>
+      <span class="small">PBI content as code</span>
+    </span>
+    <span class="flow-arrow" style="font-size: 2em;">=</span>
+    <span class="flow-box" style="border-color: #3fb950;">
+      <span class="green">GitOps for Power BI</span><br>
+      <span class="small">Version control, review,</span><br>
+      <span class="small">automation — the full loop</span>
+    </span>
+  </div>
+</section>
+
+<!-- ============ SLIDE 19: DEMO TIME ============ -->
+<section>
+  <h1>Demo Time</h1>
+  <p style="font-size: 0.9em; color: #8b949e;">Let's see it all in action</p>
+  <br>
+  <div style="font-size: 0.8em;">
+    <span class="tag green-tag">Live repo</span>
+    <span class="tag">Workflows</span>
+    <span class="tag">Pull Request</span>
+    <span class="tag green-tag">Actions running</span>
+  </div>
+</section>
+
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+<script>
+Reveal.initialize({
+  hash: true,
+  transition: 'slide',
+  transitionSpeed: 'default',
+  controlsTutorial: false,
+  progress: true,
+  center: true,
+  width: 1280,
+  height: 720
+});
+</script>
+</body>
+</html>
