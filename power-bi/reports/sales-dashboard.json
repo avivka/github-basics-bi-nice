@@ -1,0 +1,21 @@
+{
+  "name": "Sales Dashboard",
+  "description": "Executive sales dashboard with KPIs, trends, and regional breakdown",
+  "dataset": "Sales_Dashboard_Dataset",
+  "pages": [
+    {
+      "name": "Executive Summary",
+      "visuals": ["Revenue KPI Card", "Margin KPI Card", "Monthly Trend", "Regional Map"]
+    },
+    {
+      "name": "Product Analysis",
+      "visuals": ["Product Revenue Table", "Category Breakdown", "Top 10 Products"]
+    },
+    {
+      "name": "Customer Insights",
+      "visuals": ["Customer Segments", "Retention Rate", "CLV Distribution"]
+    }
+  ],
+  "workspace": "Sales Analytics",
+  "sensitivity": "Internal"
+}

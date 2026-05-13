@@ -1,0 +1,83 @@
+# ============================================================
+# Workflow 1: Validate Power BI Changes
+# Triggers: Every time someone opens or updates a Pull Request
+# Purpose: Catch problems BEFORE they reach production
+# ============================================================
+
+name: Validate Power BI Changes
+
+# WHEN does this run?
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    name: Validate Changes
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Get the code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Block .pbix files from being committed
+      # (Binary files don't belong in Git - they can't be reviewed!)
+      - name: Check for binary .pbix files
+        run: |
+          PBIX_FILES=$(git diff --name-only origin/main...HEAD | grep '\.pbix$' || true)
+          if [ -n "$PBIX_FILES" ]; then
+            echo "::error::Binary .pbix files should not be committed directly!"
+            echo "Found: $PBIX_FILES"
+            echo ""
+            echo "Use TMDL format or export metadata instead."
+            exit 1
+          fi
+          echo "No binary .pbix files found - good!"
+
+      # Step 3: Validate that JSON metadata files are well-formed
+      - name: Validate JSON files
+        run: |
+          echo "Validating JSON metadata files..."
+          ERRORS=0
+          for f in $(find . -name '*.json' -not -path './.git/*'); do
+            if ! python3 -m json.tool "$f" > /dev/null 2>&1; then
+              echo "::error file=$f::Invalid JSON in $f"
+              ERRORS=$((ERRORS + 1))
+            else
+              echo "  Valid: $f"
+            fi
+          done
+          if [ $ERRORS -gt 0 ]; then
+            echo "::error::Found $ERRORS invalid JSON files"
+            exit 1
+          fi
+          echo "All JSON files are valid!"
+
+      # Step 4: Check that measures have descriptions
+      - name: Check measure documentation
+        run: |
+          echo "Checking that measures have descriptions..."
+          for f in $(find ./power-bi/measures -name '*.json' 2>/dev/null); do
+            DESC=$(python3 -c "
+          import json
+          with open('$f') as fh:
+              data = json.load(fh)
+              print(data.get('description', ''))
+          " 2>/dev/null)
+            if [ -z "$DESC" ]; then
+              echo "::warning file=$f::Measure in $f is missing a description"
+            fi
+          done
+          echo "Documentation check complete"
+
+      # Step 5: Post a summary
+      - name: Summary
+        run: |
+          echo "## Validation Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Check | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| No .pbix binaries | Passed |" >> $GITHUB_STEP_SUMMARY
+          echo "| JSON validity | Passed |" >> $GITHUB_STEP_SUMMARY
+          echo "| Measure docs | Passed |" >> $GITHUB_STEP_SUMMARY

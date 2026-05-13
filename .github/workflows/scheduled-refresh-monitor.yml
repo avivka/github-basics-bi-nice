@@ -1,0 +1,69 @@
+# ============================================================
+# Workflow 3: Monitor Dataset Refreshes
+# Triggers: Every day at 7:00 AM UTC (scheduled)
+# Purpose: Alert the team if overnight refreshes failed
+# ============================================================
+
+name: Monitor Dataset Refreshes
+
+# WHEN does this run?
+on:
+  # Run on a schedule (cron syntax)
+  schedule:
+    - cron: '0 7 * * *'  # Every day at 07:00 UTC
+
+  # Also allow manual trigger (useful for demos!)
+  workflow_dispatch:
+
+jobs:
+  check-refreshes:
+    name: Check Dataset Refresh Status
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Check refresh status for all datasets
+      - name: Check Power BI refresh status
+        run: |
+          echo "Checking dataset refresh status..."
+          echo ""
+          echo "Dataset: Sales_Dashboard"
+          echo "  Last refresh: 2025-01-15 03:00 UTC"
+          echo "  Status: Completed"
+          echo ""
+          echo "Dataset: Finance_Report"
+          echo "  Last refresh: 2025-01-15 03:00 UTC"
+          echo "  Status: Completed"
+          echo ""
+          echo "Dataset: HR_Analytics"
+          echo "  Last refresh: 2025-01-15 03:00 UTC"
+          echo "  Status: Failed - Gateway timeout"
+          echo ""
+          # In real setup:
+          # - Call Power BI REST API to get refresh history
+          # - Parse results and check for failures
+          # - Exit 1 if any failures found
+
+      # Send alert if something failed
+      - name: Alert on failures
+        if: failure()
+        run: |
+          echo "ALERT: One or more dataset refreshes failed!"
+          echo "Sending alert to Teams channel and email..."
+          # In real setup:
+          # - Post to Teams webhook
+          # - Send email via SendGrid/SMTP
+          # - Create a GitHub Issue for tracking
+
+      # Generate a daily health report
+      - name: Generate health report
+        run: |
+          echo "## Daily Power BI Health Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Dataset | Status | Last Refresh |" >> $GITHUB_STEP_SUMMARY
+          echo "|---------|--------|--------------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Sales Dashboard | Healthy | 03:00 UTC |" >> $GITHUB_STEP_SUMMARY
+          echo "| Finance Report | Healthy | 03:00 UTC |" >> $GITHUB_STEP_SUMMARY
+          echo "| HR Analytics | Failed | 03:00 UTC |" >> $GITHUB_STEP_SUMMARY

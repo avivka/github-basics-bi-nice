@@ -1,0 +1,73 @@
+# ============================================================
+# Workflow 2: Deploy to Power BI Workspace
+# Triggers: When a PR is merged into main (production)
+# Purpose: Automatically publish changes - no manual upload!
+# ============================================================
+
+name: Deploy to Power BI Workspace
+
+# WHEN does this run?
+on:
+  push:
+    branches: [main]
+
+# Security: limit what this workflow can do
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Deploy to Power BI
+    runs-on: ubuntu-latest
+
+    # Only deploy from main branch, never from forks
+    if: github.ref == 'refs/heads/main'
+
+    # Deploy to dev first, then production (staged rollout)
+    strategy:
+      matrix:
+        environment: [development, production]
+
+    environment: ${{ matrix.environment }}
+
+    steps:
+      # Step 1: Get the code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Authenticate with Power BI Service
+      # (Uses secrets stored securely in GitHub - never in code!)
+      - name: Login to Power BI
+        run: |
+          echo "Authenticating with Power BI Service..."
+          echo "Using Service Principal from GitHub Secrets"
+          echo "(Credentials are stored securely - never visible in logs)"
+          # In real setup, this would use:
+          # - AZURE_TENANT_ID (from GitHub Secrets)
+          # - AZURE_CLIENT_ID (from GitHub Secrets)
+          # - AZURE_CLIENT_SECRET (from GitHub Secrets)
+
+      # Step 3: Deploy using Power BI REST API
+      - name: Deploy to ${{ matrix.environment }} workspace
+        run: |
+          echo "Deploying to ${{ matrix.environment }} workspace..."
+          echo ""
+          echo "Steps performed:"
+          echo "  1. Connect to Power BI REST API"
+          echo "  2. Upload updated dataset definitions"
+          echo "  3. Update report configurations"
+          echo "  4. Trigger dataset refresh"
+          echo "  5. Verify deployment health"
+          echo ""
+          echo "Deployment to ${{ matrix.environment }} complete!"
+
+      # Step 4: Notify the team
+      - name: Notify team on Microsoft Teams
+        if: always()
+        run: |
+          echo "Sending notification to Teams channel..."
+          echo "Message: Power BI deployment to ${{ matrix.environment }} - ${{ job.status }}"
+          # In real setup, this would post to a Teams webhook:
+          # curl -X POST "${{ secrets.TEAMS_WEBHOOK_URL }}" \
+          #   -H "Content-Type: application/json" \
+          #   -d '{"text": "PBI deployed to ${{ matrix.environment }}"}'

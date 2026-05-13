@@ -1,0 +1,10 @@
+{
+  "name": "Total Revenue",
+  "description": "Sum of all revenue across all product lines",
+  "table": "FactSales",
+  "expression": "SUM(FactSales[Revenue])",
+  "formatString": "$#,##0",
+  "folder": "Revenue",
+  "lastModifiedBy": "data-team@company.com",
+  "lastModifiedDate": "2025-01-05"
+}

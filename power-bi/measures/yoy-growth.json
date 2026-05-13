@@ -1,0 +1,10 @@
+{
+  "name": "YoY Revenue Growth",
+  "description": "Year-over-year revenue growth percentage using SAMEPERIODLASTYEAR",
+  "table": "FactSales",
+  "expression": "VAR CurrentYear = [Total Revenue]\nVAR PreviousYear = CALCULATE([Total Revenue], SAMEPERIODLASTYEAR(DimDate[Date]))\nRETURN DIVIDE(CurrentYear - PreviousYear, PreviousYear, 0)",
+  "formatString": "0.0%",
+  "folder": "Growth",
+  "lastModifiedBy": "sarah@company.com",
+  "lastModifiedDate": "2025-01-12"
+}

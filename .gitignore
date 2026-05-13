@@ -1,0 +1,17 @@
+# Power BI binary files - use TMDL format instead!
+*.pbix
+*.pbit
+
+# Sensitive files - NEVER commit credentials
+.env
+*.pfx
+credentials.json
+service-principal.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/

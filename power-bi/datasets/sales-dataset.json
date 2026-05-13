@@ -1,0 +1,19 @@
+{
+  "name": "Sales_Dashboard_Dataset",
+  "description": "Core sales dataset powering the Sales Dashboard report",
+  "owner": "data-team@company.com",
+  "refreshSchedule": {
+    "frequency": "daily",
+    "time": "03:00 UTC",
+    "timezone": "UTC"
+  },
+  "tables": [
+    "FactSales",
+    "DimProduct",
+    "DimCustomer",
+    "DimDate",
+    "DimGeography"
+  ],
+  "gateway": "On-Premises-Gateway-01",
+  "workspace": "Sales Analytics"
+}

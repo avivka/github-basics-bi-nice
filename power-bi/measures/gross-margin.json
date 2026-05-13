@@ -1,0 +1,10 @@
+{
+  "name": "Gross Margin %",
+  "description": "Calculates gross margin percentage: (Revenue - COGS) / Revenue",
+  "table": "FactSales",
+  "expression": "DIVIDE(SUM(FactSales[Revenue]) - SUM(FactSales[COGS]), SUM(FactSales[Revenue]), 0)",
+  "formatString": "0.00%",
+  "folder": "Profitability",
+  "lastModifiedBy": "aviv@company.com",
+  "lastModifiedDate": "2025-01-10"
+}
