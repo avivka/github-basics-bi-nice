@@ -1,0 +1,10 @@
+{
+  "name": "Customer Acquisition Cost",
+  "description": "Average cost to acquire a new customer: Total Marketing Spend / New Customers Acquired",
+  "table": "FactSales",
+  "expression": "DIVIDE(SUM(FactMarketing[Spend]), COUNTROWS(FILTER(DimCustomer, DimCustomer[IsNew] = TRUE())), 0)",
+  "formatString": "$#,##0.00",
+  "folder": "Customer Metrics",
+  "lastModifiedBy": "aviv@company.com",
+  "lastModifiedDate": "2025-01-15"
+}

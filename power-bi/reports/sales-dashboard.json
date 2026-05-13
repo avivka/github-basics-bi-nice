@@ -13,7 +13,7 @@
     },
     {
       "name": "Customer Insights",
-      "visuals": ["Customer Segments", "Retention Rate", "CLV Distribution"]
+      "visuals": ["Customer Segments", "Retention Rate", "CLV Distribution", "Acquisition Cost Trend"]
     }
   ],
   "workspace": "Sales Analytics",
